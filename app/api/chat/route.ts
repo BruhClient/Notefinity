@@ -40,7 +40,7 @@ export async function POST(req : Request) {
 
         const systemMessage : CoreSystemMessage = { 
             role : "system", 
-            content : `You are a intelligent note-taking app . Notes are stored in folders . The user has chosen the folder : ${folderName} . There are a total of ${totalNotesCount} in this folder. ` 
+            content : `You are a intelligent note-taking app . Notes are stored in folders . The user has chosen the folder : ${folderName} . There are a total of ${totalNotesCount} in this folder. Structure your answers based on the relevant notes . Do not give generalised information or assumptions ` 
             + "The relevant notes for this query are \n " 
             + data.map(note => 
                 `Title: ${note.title}\n` +
