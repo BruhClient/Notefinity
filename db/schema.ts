@@ -15,6 +15,8 @@ import type { AdapterAccountType } from "next-auth/adapters"
 
 export const userRoleEnum = pgEnum("user_role", ["admin", "user", "editor"]);
 
+export const userPlanEnum = pgEnum("user_plan", ["Free","Pro"]);
+
 
 export const users = pgTable("user", {
   id: text("id")
@@ -24,11 +26,14 @@ export const users = pgTable("user", {
   email: text("email").unique().notNull(),
 
   role: userRoleEnum("role").default("user").notNull(),
+  plan: userPlanEnum("plan").default("Free").notNull(),
   emailVerified: timestamp("emailVerified", { mode: "date" }),
   hashedPassword : text("hashedPassword"), 
   isOauth : boolean("isOauth"),
   image: text("image"),
 })
+
+
  
 export const accounts = pgTable(
   "account",
@@ -89,3 +94,87 @@ export const passwordTokens = pgTable(
     
   )
  
+export const folders = pgTable(
+    "folders",
+    {
+      id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+      name : text("name").notNull(),
+      createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+      userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+      color : text("color").notNull(),
+      sharable :boolean("sharable").notNull().default(false), 
+      
+      
+     
+    },
+  )
+
+export const folderLikes = pgTable(
+    "folderLikes",
+    {
+      id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+      
+      createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+      folderId : text("folderId").notNull().references(() => folders.id, { onDelete: "cascade" }),
+      userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+      
+      
+      
+     
+    },
+  )
+
+export const folderComments = pgTable(
+    "folderComments",
+    {
+      id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+      
+      createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+      folderId : text("folderId").notNull().references(() => folders.id, { onDelete: "cascade" }),
+      text : text("text").notNull(), 
+      userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+      
+      
+      
+     
+    },
+  )
+
+export const notes = pgTable(
+    "notes",
+    {
+      id: text("id")
+      .primaryKey()
+      .$defaultFn(() => crypto.randomUUID()),
+      userId: text("userId")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" }),
+      folderId: text("folderId")
+      .notNull()
+      .references(() => folders.id, { onDelete: "cascade" }),
+      starred : boolean("starred").notNull().default(false), 
+      title : text("Title").notNull().default("Untitled"), 
+      text : text("content"),
+      html : text("html"),
+      createdAt: timestamp("created_at", { mode: "date" }).defaultNow().notNull(),
+      updatedAt: timestamp("updated_at", { mode: "date" }).$onUpdate(() => new Date()).notNull(),
+      color : text("color").notNull()
+
+
+      
+     
+    },
+    
+  )

@@ -1,16 +1,17 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Sofia_Sans } from "next/font/google";
+import { Geist_Mono, Inter, Manrope, Sofia_Sans } from "next/font/google";
 import "./globals.css";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Toaster } from "@/components/ui/sonner"
 import AppProvider from "@/components/providers/AppProvider";
-
-const sans = Sofia_Sans({
+import Navbar from "@/components/Navbar";
+import AiChat from "@/components/AiChat";
+const sans = Manrope({
   variable: "--font-sans",
   subsets: ["latin"],
 });
 
-const serif = Geist_Mono({
+const serif = Inter({
   variable: "--font-serif",
   subsets: ["latin"],
 });
@@ -34,17 +35,20 @@ export default function RootLayout({
           className={`${sans.variable} ${serif.variable} font-sans antialiased`}
         >
           <AppProvider>
-         
-            
+            <div className="fixed inset-0 -z-10 h-full w-full bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+            <Navbar />
+
        
           
             {authModal}
             <main> {children}</main>
            
             <Toaster />
-            <div className="fixed bottom-4 right-4">
-              <ModeToggle />
-            </div>
+
+
+            
+  
+            
           </AppProvider>
           
         </body>

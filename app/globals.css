@@ -43,7 +43,35 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-}
+  --animate-gradient: gradient 8s linear infinite;
+  @keyframes gradient {
+  to {
+    background-position: var(--bg-size, 300%) 0;
+    }
+  }
+  --animate-marquee: marquee var(--duration) infinite linear;
+  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite
+;
+  @keyframes marquee {
+  from {
+    transform: translateX(0);}
+  to {
+    transform: translateX(calc(-100% - var(--gap)));}}
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);}
+  to {
+    transform: translateY(calc(-100% - var(--gap)));}}
+  @keyframes marquee {
+  from {
+    transform: translateX(0);}
+  to {
+    transform: translateX(calc(-100% - var(--gap)));}}
+  @keyframes marquee-vertical {
+  from {
+    transform: translateY(0);}
+  to {
+    transform: translateY(calc(-100% - var(--gap)));}}}
 
 :root {
   --background: oklch(1 0 0);
@@ -123,4 +151,29 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+.ProseMirror p.is-empty::before {
+  content: attr(data-placeholder);
+  color: var(--color-muted-foreground);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+.editor__h1 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.3rem;
+}
+
+.editor__h2 {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.25rem;
+}
+
+.editor__h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
 }

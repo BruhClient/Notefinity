@@ -1,4 +1,4 @@
-
+"use client"
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTransition } from "react";
@@ -10,6 +10,7 @@ import { EditProfilePayload, EditProfileSchema } from "@/schema/auth/edit-profil
 import { editProfile } from "@/server/actions/auth/edit-profile";
 import { useSession } from "next-auth/react";
 import {ClipLoader} from "react-spinners"
+import { showSuccessToast } from "@/lib/toast";
 
 
  
@@ -35,6 +36,7 @@ const EditProfileForm = () => {
         startTransition(() => {
             editProfile(values).then((data) => { 
                 update()
+                showSuccessToast("Profile Updated")
 
             })
         })

@@ -8,15 +8,15 @@ export function showSuccessToast(
   title: string = "Success",
   message: string = "Your action was completed successfully."
 ) {
-  toast.success(title, {
-    description: message,
+  toast.success(<div className='pl-3'>{title}</div>, {
+    description: <div className='pl-3'>{message}</div>,
     icon: <CheckCircle2 className="text-green-600 " />,
     duration: 4000,
   });
 }
 export function showErrorToast(message: string = "Something went wrong.") {
-  toast.error("Error", {
-    description: message,
+  toast.error(<div className='pl-3'>Error</div>, {
+    description: <div className='pl-3'>{message}</div>,
     icon: <AlertTriangle className="text-red-500 " />,
     duration: 5000,
   });

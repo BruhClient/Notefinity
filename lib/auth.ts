@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import authConfig from "./auth-config"
 import { getUserById, updateUserByEmail } from "../server/db/users"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
-import { accounts, userRoleEnum, users } from "@/db/schema"
+import { accounts, userPlanEnum, userRoleEnum, users } from "@/db/schema"
 import { db } from "@/db"
 
 
@@ -53,7 +53,8 @@ export const { handlers : {GET , POST}, auth, signIn, signOut } = NextAuth({
           session.user.id = token.id as string 
           session.user.isOauth = token.isOauth as boolean
           session.user.role = token.role as typeof userRoleEnum
-          session.user.name = token.name as string 
+          session.user.name = token.name as string , 
+          session.user.plan = token.plan as "Free" | "Pro"
 
       }
       return session
@@ -76,7 +77,8 @@ export const { handlers : {GET , POST}, auth, signIn, signOut } = NextAuth({
         isOauth : user?.isOauth, 
         image : user?.image, 
         email : user?.email, 
-        role : user?.role
+        role : user?.role, 
+        plan : user?.plan, 
 
       }
     }

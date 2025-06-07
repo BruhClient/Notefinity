@@ -1,0 +1,1 @@
+ALTER TABLE "notes" ADD COLUMN "starred" boolean DEFAULT false NOT NULL;

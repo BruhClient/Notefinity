@@ -3,6 +3,7 @@
 import React from 'react'
 import { ThemeProvider } from './ThemeProvider'
 import { SessionProvider } from 'next-auth/react'
+import ReactQueryProvider from './ReactQueryProvider'
 
 const AppProvider = ({children} : {children : React.ReactNode}) => {
   return (
@@ -14,14 +15,19 @@ const AppProvider = ({children} : {children : React.ReactNode}) => {
           enableSystem
           disableTransitionOnChange
           >
-            
-          <SessionProvider>
-          
-            {children}
-    
-    
-          </SessionProvider>
+            <ReactQueryProvider>
 
+              <SessionProvider>
+          
+                {children}
+        
+        
+              </SessionProvider>
+
+              
+            </ReactQueryProvider>
+            
+          
           
         </ThemeProvider>
      

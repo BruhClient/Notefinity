@@ -13,7 +13,7 @@ import ProfileImageUploader from "../ProfileImageUploader";
 function UserProfile() {
     const user = useSessionUser()
     
-    console.log(user    )
+  
     if (!user) { 
         return <Skeleton className="w-10 aspect-square rounded-full" />
     }
@@ -26,7 +26,7 @@ function UserProfile() {
                 <AvatarFallback><User/></AvatarFallback>
             </Avatar>
         </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-fit">
+        <DropdownMenuContent className="w-fit mx-3">
 
             <div className="flex items-center gap-3 px-3 py-2">
                 <Avatar className="w-10 h-10">
