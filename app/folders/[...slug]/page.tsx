@@ -17,7 +17,7 @@ import LikeWrapper from './_component/LikeWrapper'
 import CommentWrapper from './_component/CommentWrapper'
 import { timeAgo } from '@/lib/time'
 
-const FolderPage =async ({params} : {params : Promise<{slug : string}>}) => {
+const FolderPage =async ({params} : {params : Promise<{slug : string[]}>}) => {
 
     const slug = (await params).slug[0]
 
