@@ -76,6 +76,8 @@ const NoteCard = ({title,htmlText,color,id,updatedAt,userId ,folderId , starred,
     const colorCode = colors[color]
     const [open, setOpen] = useState(false);
 
+   
+
     if (!isOwner) return <Card className="border-black relative overflow-hidden transition-colors ease-in-out duration-200 ">
         
                 <CardContent>

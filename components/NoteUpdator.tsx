@@ -44,7 +44,7 @@ const NoteUpdator = ({userId, folderId , noteContent ,id,note , setOpen} : {user
       text, 
       html, 
       starred, 
-      updatedAt : Date.now(),
+      updatedAt : new Date().toISOString(),
 
     }
     queryClient.setQueryData(["notes", folderId, userId], (oldData: any) => {
