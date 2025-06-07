@@ -1,12 +1,10 @@
 
 import { db } from "@/db";
 import { notes } from "@/db/schema";
-import { auth } from "@/lib/auth";
 import pinecone from "@/lib/pinecone";
-import { and, eq, inArray, sql } from "drizzle-orm";
+import { eq, inArray, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 import { CoreMessage, CoreSystemMessage, streamText } from "ai";
-import { env } from "@/data/env/server";
 import { openai } from '@ai-sdk/openai';
 import { getEmbedding } from "@/lib/embeddings";
 

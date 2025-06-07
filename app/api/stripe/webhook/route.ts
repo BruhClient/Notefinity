@@ -2,7 +2,6 @@ import { env } from "@/data/env/server";
 import { db } from "@/db";
 import { users } from "@/db/schema";
 import { stripe } from "@/lib/stripe";
-import { format } from "date-fns";
 import { eq } from "drizzle-orm";
 import { headers } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";

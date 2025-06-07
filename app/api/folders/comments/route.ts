@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
   
   
               return Response.json(result.map((data) => { return {...data.comment,...data.user}}))
-    } catch(error) { 
+    } catch { 
             
         return new Response("Something went wrong", { status: 401 })
     }

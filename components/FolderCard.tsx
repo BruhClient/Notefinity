@@ -3,8 +3,7 @@
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import { Skeleton } from './ui/skeleton';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { Heart, MessageCircle, Speech, User } from 'lucide-react';
-import { format } from 'date-fns';
+import { Heart, MessageCircle, User } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { timeAgo } from '@/lib/time';
 

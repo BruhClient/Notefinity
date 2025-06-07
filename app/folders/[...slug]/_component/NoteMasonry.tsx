@@ -1,6 +1,6 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import {useIntersection} from "@mantine/hooks"
 import { useEffect, useRef, useState } from "react";
 import { format } from "date-fns";

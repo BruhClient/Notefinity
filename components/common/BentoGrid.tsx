@@ -1,14 +1,12 @@
 
 
-import React, { Suspense } from 'react'
+import React from 'react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '../ui/card'
 import { MotionDiv } from '../Motion'
 import { Bot, User } from 'lucide-react'
-import { Avatar, AvatarFallback } from '../ui/avatar'
 import { boxVariants } from '@/lib/variants'
 import { AnimatedComments } from './AnimatedComments'
 import { IconCloudDisplay } from './IconCloud'
-import { AnimatedBeamDisplay } from './AnimatedBeamDisplay'
 
 const BentoGrid = () => {
   return (

@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
-import { Geist_Mono, Inter, Manrope, Sofia_Sans } from "next/font/google";
+import { Inter, Manrope } from "next/font/google";
 import "./globals.css";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Toaster } from "@/components/ui/sonner"
 import AppProvider from "@/components/providers/AppProvider";
 import Navbar from "@/components/Navbar";
-import AiChat from "@/components/AiChat";
 const sans = Manrope({
   variable: "--font-sans",
   subsets: ["latin"],

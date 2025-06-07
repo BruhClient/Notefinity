@@ -3,7 +3,6 @@ import { NextRequest } from "next/server"
 
 import { db } from "@/db"
 import { eq, and, desc } from "drizzle-orm"
-import { auth } from "@/lib/auth"
 import {  notes } from "@/db/schema"
 
 export async function GET(req: NextRequest) {
@@ -24,7 +23,7 @@ export async function GET(req: NextRequest) {
   
   
               return Response.json(result)
-    } catch(error) { 
+    } catch { 
             
         return new Response("Something went wrong", { status: 401 })
     }

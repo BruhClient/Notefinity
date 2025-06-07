@@ -5,7 +5,6 @@ import { useFolders } from "@/hooks/use-folders";
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import {useIntersection} from "@mantine/hooks"
 import { useEffect, useRef } from "react";
-import { format } from "date-fns";
 import { colors } from "@/data/constants";
 import DeleteFolderButton from "./DeleteFolderButton";
 import EditFolderButton from "./EditFolderButton";

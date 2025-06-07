@@ -4,7 +4,7 @@ import pinecone from "@/lib/pinecone"
 import { getEmbedding } from "@/lib/embeddings"
 import { db } from "@/db"
 import { folderComments, folderLikes, folders, users } from "@/db/schema"
-import { count, desc, eq, inArray, sql } from "drizzle-orm"
+import { count, eq, inArray, sql } from "drizzle-orm"
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
@@ -36,7 +36,6 @@ export async function GET(req: NextRequest) {
     const scoreMap = Object.fromEntries(matches.map((match) => [match.id, match.score]))
 
 
-    console.log(ids)
     // 3. Create ordering CASE to maintain Pinecone result order
     const orderingCase = sql.raw(
       `CASE ${ids.map((id, index) => `WHEN folders.id = '${id}' THEN ${index}`).join(" ")} ELSE ${ids.length} END`

@@ -4,7 +4,7 @@ import useSessionUser from '@/hooks/use-session-user';
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from './ui/button';
 import { Bot, Send, User, X } from 'lucide-react';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { Card, CardContent, CardDescription, CardFooter, CardTitle } from './ui/card';
 import { Input } from './ui/input';
 import {useChat} from "ai/react"
 import { MotionDiv } from './Motion';

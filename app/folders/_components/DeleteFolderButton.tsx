@@ -17,7 +17,6 @@ import { showErrorToast, showSuccessToast } from '@/lib/toast'
 import { useQueryClient } from '@tanstack/react-query'
 import { Button } from '@/components/ui/button'
 import { deleteFolder } from '@/server/db/folder'
-import { usePathname, useRouter } from 'next/navigation'
 
 
 const DeleteFolderButton = ({id,userId} : {id : string,userId : string}) => {

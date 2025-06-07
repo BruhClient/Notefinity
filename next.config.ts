@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
     domains : ["lh3.googleusercontent.com"]
   },
   experimental : { 
-    dynamicIO : true
+    useCache : true
   },
   eslint : {
     ignoreDuringBuilds : true

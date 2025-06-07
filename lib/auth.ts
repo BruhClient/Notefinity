@@ -2,7 +2,7 @@ import NextAuth from "next-auth"
 import authConfig from "./auth-config"
 import { getUserById, updateUserByEmail } from "../server/db/users"
 import { DrizzleAdapter } from "@auth/drizzle-adapter"
-import { accounts, userPlanEnum, userRoleEnum, users } from "@/db/schema"
+import { accounts, userRoleEnum, users } from "@/db/schema"
 import { db } from "@/db"
 
 

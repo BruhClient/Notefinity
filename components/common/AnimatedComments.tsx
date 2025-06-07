@@ -3,7 +3,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatedList } from "@/components/magicui/animated-list";
 import { Avatar } from "@radix-ui/react-avatar";
-import { AvatarFallback, AvatarImage } from "../ui/avatar";
+import { AvatarImage } from "../ui/avatar";
 
 interface Item {
   name: string;

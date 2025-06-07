@@ -7,12 +7,10 @@ import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Dispatch, SetStateAction, useTransition } from "react";
-import { ClipLoader } from "react-spinners";
 import { showErrorToast, showSuccessToast } from "@/lib/toast";
 import { CreateFolderPayload, CreateFolderSchema } from "@/schema/create-folder";
 import { updateFolderById } from "@/server/db/folder";
 import { useQueryClient } from "@tanstack/react-query";
-import { DialogClose } from "../ui/dialog";
 
 
 function UpdateFolderForm({id,name,userId,setOpen} : {id : string,name : string,userId : string , setOpen : Dispatch<SetStateAction<boolean>>}) {

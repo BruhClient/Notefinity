@@ -10,7 +10,6 @@ import { useSearchParams } from 'next/navigation'
 import React from 'react'
 import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
 import { Heart, MessageCircle, User } from 'lucide-react';
-import { format } from 'date-fns';
 import { useRouter } from 'next/navigation';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { timeAgo } from '@/lib/time'

@@ -10,7 +10,6 @@ import { CreateCommentPayload, CreateCommentSchema } from '@/schema/create-comme
 import { createFolderComment } from '@/server/folderComments'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { usePrevious } from '@mantine/hooks'
-import { format } from 'date-fns'
 import { MessageCircle, Send } from 'lucide-react'
 import React, { useState, useTransition } from 'react'
 import { useForm } from 'react-hook-form'

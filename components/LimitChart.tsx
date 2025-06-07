@@ -1,6 +1,6 @@
 'use client';
 
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, LabelList, Cell } from 'recharts';
+import { BarChart, Bar, XAxis, ResponsiveContainer, LabelList, Cell } from 'recharts';
 
 // lib/chart-configs/noteLimitChartConfig.ts
 

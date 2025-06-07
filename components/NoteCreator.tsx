@@ -8,7 +8,7 @@ import { CreateNotePayload, CreateNoteSchema } from '@/schema/create-note'
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form'
 import TextareaAutoResize from "react-textarea-autosize"
 import { Button } from './ui/button'
-import { Redo2, Star } from 'lucide-react'
+import { Star } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { createNote } from '@/server/db/note'
 import { showErrorToast, showSuccessToast } from '@/lib/toast'

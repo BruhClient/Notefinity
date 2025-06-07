@@ -2,7 +2,7 @@
 
 import StatisticCard from '@/components/StatisticCard';
 import { db } from '@/db'
-import { folders, notes } from '@/db/schema';
+import { notes } from '@/db/schema';
 import { desc, sql } from 'drizzle-orm';
 import React from 'react'
 
