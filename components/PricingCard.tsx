@@ -4,8 +4,8 @@ import React from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
 import { Check, X } from 'lucide-react'
 import { Button } from './ui/button'
-import Link from 'next/link'
 import useSessionUser from '@/hooks/use-session-user'
+import { useRouter } from 'next/navigation'
 
 const CustomCheck = () => <div className='bg-green-400 p-1 rounded-full '><Check className='text-black' size={15}/></div>
 const CustomX = () => <div  className='bg-red-400 p-1 rounded-full '><X size={15} className='text-black'/></div>
@@ -16,7 +16,11 @@ const PricingCard = ({pricingType} : {pricingType : "Free" | "Pro"}) => {
 
     const {price,description,originalPrice,link,support,folderAmount,noteAmount,community,aiChat} = pricingTypes[pricingType]
     const user = useSessionUser()
+    const router = useRouter()
 
+
+    
+    
   return (
     <Card className='max-w-[500px] w-full'>
         <CardHeader>
@@ -30,10 +34,10 @@ const PricingCard = ({pricingType} : {pricingType : "Free" | "Pro"}) => {
                                     
                                     <span className='text-4xl font-serif font-bold'>${price}</span>
                                 </div>
-                                <Button className='w-full' variant={"outline"} disabled={user && user.plan === pricingType}>
-                                    <Link href={link ? link : "/signin"} target={link && "_blank"} >
+                                <Button className='w-full' variant={"outline"} disabled={user?.plan === pricingType } onClick={() => router.push(link ? `${link}?prefilled_email=${user?.email}` : "/signin")}>
+                                    
                                         {user?.plan === pricingType ? "Your Current Plan" : "Get Started"}
-                                    </Link>
+                                    
                                 </Button>
                                 <div className='flex flex-col gap-2 py-5 px-1'>
                                     <div className='flex items-center text-lg gap-3 font-serif '>

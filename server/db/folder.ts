@@ -134,7 +134,9 @@ export const deleteFolder = async (id : string) => {
 
             const index = pinecone.index("notefinity-folders")
 
-            await index.deleteOne(data[0].id);
+
+            console.log(id)
+            await index.deleteOne(id);
 
             revalidatePath(`/folders`)
          

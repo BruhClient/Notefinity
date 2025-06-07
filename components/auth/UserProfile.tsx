@@ -9,6 +9,7 @@ import { Skeleton } from "../ui/skeleton";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "../ui/dialog";
 import EditProfileForm from "../forms/profile";
 import ProfileImageUploader from "../ProfileImageUploader";
+import Link from "next/link";
 
 function UserProfile() {
     const user = useSessionUser()
@@ -41,10 +42,17 @@ function UserProfile() {
                 
             </div>
             <DropdownMenuSeparator />
-            <DropdownMenuItem >
-                <Sparkles /> Upgrade to Pro
+
+            {
+                user.plan === "Free" &&  <>
+                <DropdownMenuItem asChild>
+                <Link href={"/settings"}><Sparkles /> Upgrade to Pro</Link>
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
+             <DropdownMenuSeparator />
+            </>
+            }
+       
+           
             
 
                 <Dialog>
@@ -62,9 +70,6 @@ function UserProfile() {
                 </Dialog>
                 
            
-            <DropdownMenuItem >
-                <Wallet /> Billing
-            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => signOut({
                 callbackUrl : "/signin"

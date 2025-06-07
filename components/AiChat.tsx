@@ -83,9 +83,9 @@ const AiChat = ({folderId, folderName } : {folderId : string, folderName : strin
                     {messages.map((message) => {
 
                         if (message.role === "assistant") { 
-                        return <MotionDiv variants={boxVariants} initial={"hidden"} animate={"visible"}  className='w-full text-primary-foreground flex justify-start items-center gap-2 font-serif' key={message.id}>
+                        return <MotionDiv variants={boxVariants} initial={"hidden"} animate={"visible"}  className='w-full flex justify-start items-center gap-2 font-serif' key={message.id}>
                             <Bot className='text-foreground' />
-                            <div className='w-fit bg-primary px-2 py-1 rounded-lg'>{message.content}</div>
+                            <div className='w-fit bg-muted text-foreground px-2 py-1 rounded-lg'>{message.content}</div>
                         </MotionDiv>
                         }
                         return <MotionDiv className='w-full text-primary-foreground flex justify-end items-center gap-2 font-serif' key={message.id} variants={boxVariants} initial={"hidden"} animate={"visible"}>

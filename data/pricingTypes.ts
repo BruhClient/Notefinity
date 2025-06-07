@@ -19,7 +19,7 @@ export const pricingTypes = {
         community : true , 
         aiChat : true , 
         originalPrice : 39.99, 
-        link : "", 
+        link : "https://buy.stripe.com/test_aFabJ09AlaDY5ZVcQa57W00", 
     }, 
 
 

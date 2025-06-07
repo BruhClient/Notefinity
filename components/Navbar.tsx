@@ -56,7 +56,8 @@ const Navbar = () => {
                                 })
                             }
                     </div>
-                    <div className='hidden md:block'>
+                    <div className='hidden md:flex items-center gap-2'>
+                        <div className='shadow-lg bg-background font-semibold text-sm px-3 py-1 rounded-lg'>{user.plan}</div>
                         <UserProfile />
                     </div>
 

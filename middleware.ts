@@ -3,7 +3,7 @@ import NextAuth from "next-auth"
 
 import authConfig from "./lib/auth-config"
 import { NextResponse } from "next/server"
-import { ACCOUNT_VERIFICATION_PREFIX, API_ROUTE_PREFIX, AUTH_ROUTES, DEFAULT_ROUTE, LOGIN_ROUTE, PUBLIC_ROUTES, UPLOADTHING_PREFIX } from "./route"
+import { ACCOUNT_VERIFICATION_PREFIX, API_ROUTE_PREFIX, AUTH_ROUTES, DEFAULT_ROUTE, LOGIN_ROUTE, PUBLIC_ROUTES, STRIPE_WEBHOOK_ROUTE, UPLOADTHING_PREFIX } from "./route"
 
 
 const {auth} = NextAuth(authConfig)
@@ -14,6 +14,8 @@ export default auth((req) => {
     const isLoggedIn = !!req.auth
 
     if (nextUrl.pathname.includes(API_ROUTE_PREFIX)) return NextResponse.next()
+
+    if (nextUrl.pathname.includes(STRIPE_WEBHOOK_ROUTE)) return NextResponse.next()
     
 
     if (nextUrl.pathname.includes(ACCOUNT_VERIFICATION_PREFIX)) return NextResponse.next()

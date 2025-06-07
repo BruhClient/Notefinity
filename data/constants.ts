@@ -12,6 +12,8 @@ export const colors = {
   "Seafoam Silk": "#00F5D4"      // bright seafoam neon
 }
 
+export const colorNames = Object.keys(colors)
+
 
 
 export type ColorNames = keyof typeof colors;
