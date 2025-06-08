@@ -33,11 +33,11 @@ const SettingsPage = async () => {
 
             <Card className='max-w-[600px] w-full'>
               <CardContent className=' flex w-full justify-between items-center'>
-                <div>
+                <div className='space-y-2'>
                   <CardTitle>
                     Appearance
                   </CardTitle>
-                  <CardDescription>
+                  <CardDescription className='text-sm'>
                     System , Light and Dark.
                   </CardDescription>
                 </div>
