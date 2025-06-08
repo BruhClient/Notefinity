@@ -10,7 +10,7 @@ const Features = () => {
 
         <div className='space-y-5 max-w-[900px]'>
 
-            <TextReveal className='text-6xl font-bold  text-center '>
+            <TextReveal className='text-5xl font-bold  text-center '>
                 Everything at your fingertips.
             </TextReveal>
           <BoxReveal>
