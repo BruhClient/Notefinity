@@ -9,7 +9,7 @@ const Pricing = () => {
 
         <div className='space-y-5'>
 
-            <TextReveal className='text-6xl font-bold max-w-[1200px] text-center '>
+            <TextReveal className='text-5xl font-bold max-w-[1200px] text-center '>
                 Simple pricing for everyone.
             </TextReveal>
             <BoxReveal>

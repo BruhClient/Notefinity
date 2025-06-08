@@ -8,6 +8,8 @@ import { auth } from '@/lib/auth'
 import React from 'react'
 import LogOutButton from './_components/LogOutButton'
 import PricingCard from '@/components/PricingCard'
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card'
+import { ModeToggle } from '@/components/ModeToggle'
 
 
 const SettingsPage = async () => {
@@ -29,6 +31,23 @@ const SettingsPage = async () => {
                 <LogOutButton />
             </div>
 
+            <Card className='max-w-[600px] w-full'>
+              <CardContent className=' flex w-full justify-between items-center'>
+                <div>
+                  <CardTitle>
+                    Appearance
+                  </CardTitle>
+                  <CardDescription>
+                    System , Light and Dark.
+                  </CardDescription>
+                </div>
+
+                <div>
+                  <ModeToggle />
+                </div>
+              </CardContent>
+            </Card>
+
        
 
        
@@ -38,6 +57,8 @@ const SettingsPage = async () => {
                 <PricingCard pricingType='Pro'/>
                     
             </div>
+
+            
 
         
 
