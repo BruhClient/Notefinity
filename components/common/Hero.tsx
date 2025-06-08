@@ -1,16 +1,21 @@
-'use client'
-import React from 'react'
-import { AnimatedBadge } from './AnimatedBadge'
-import { Button } from '../ui/button'
-import { ChevronRight } from 'lucide-react'
-import Link from 'next/link'
-import { MotionDiv } from '../Motion'
-import { boxVariants } from '@/lib/variants'
-import { BoxReveal } from '../magicui/box-reveal'
-import {motion} from "motion/react"
+"use client";
+import React from "react";
+import { AnimatedBadge } from "./AnimatedBadge";
+import { Button } from "../ui/button";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { MotionDiv } from "../Motion";
+import { boxVariants } from "@/lib/variants";
+import { BoxReveal } from "../magicui/box-reveal";
+import { motion } from "motion/react";
 
-
-const Highlight = ({ children , color="#81fcbf" }: { children: React.ReactNode , color? : string}) => {
+const Highlight = ({
+  children,
+  color = "#81fcbf",
+}: {
+  children: React.ReactNode;
+  color?: string;
+}) => {
   return (
     <span className="relative inline-block">
       {/* Word */}
@@ -31,12 +36,12 @@ const Highlight = ({ children , color="#81fcbf" }: { children: React.ReactNode ,
           fill="none"
           initial={{ pathLength: 0 }}
           whileInView={{ pathLength: 1 }}
-          transition={{ duration: 0.7, ease: 'easeInOut' }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
         />
       </svg>
     </span>
-  )
-}
+  );
+};
 
 const Hero = () => {
   return (
@@ -50,13 +55,14 @@ const Hero = () => {
           initial="hidden"
           animate="visible"
         >
-          Notefinity is the new way to{' '}
-          <Highlight>create</Highlight> notes and <Highlight>learn</Highlight> from others.
+          Notefinity is the new way to <Highlight>create</Highlight> notes and{" "}
+          <Highlight>learn</Highlight> from others.
         </MotionDiv>
 
         <BoxReveal>
           <div className="font-serif font-normal lg:text-xl max-w-[700px] text-lg">
-            Beautifully designed, AI Integrated dashboard built with Tailwind CSS, React, and Framer Motion.
+            Beautifully designed, AI Integrated dashboard built with Tailwind
+            CSS, React, and Framer Motion.
           </div>
         </BoxReveal>
       </div>
@@ -67,7 +73,7 @@ const Hero = () => {
         </Link>
       </Button>
     </div>
-  )
-}
+  );
+};
 
-export default Hero
+export default Hero;

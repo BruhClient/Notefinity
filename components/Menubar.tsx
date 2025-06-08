@@ -1,5 +1,5 @@
-import React from 'react'
-import type { Editor } from '@tiptap/react'
+import React from "react"
+import type { Editor } from "@tiptap/react"
 import {
   Bold,
   Heading1,
@@ -15,10 +15,7 @@ import {
   AlignJustify,
   Highlighter,
 } from "lucide-react"
-import {
-  ToggleGroup,
-  ToggleGroupItem,
-} from "@/components/ui/toggle-group"
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
 const Menubar = ({ editor }: { editor: Editor | null }) => {
   if (!editor) return null
@@ -59,8 +56,8 @@ const Menubar = ({ editor }: { editor: Editor | null }) => {
     },
     {
       icon: Highlighter,
-      onClick: () => editor.commands.toggleHighlight({color : '#ffcc00'}),
-      active: editor.isActive('highlight', { color: '#ffcc00' }),
+      onClick: () => editor.commands.toggleHighlight({ color: "#ffcc00" }),
+      active: editor.isActive("highlight", { color: "#ffcc00" }),
       value: "highlight",
     },
     {

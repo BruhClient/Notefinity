@@ -6,41 +6,49 @@ import { auth } from "@/lib/auth"
 import { and, eq } from "drizzle-orm"
 import { revalidatePath } from "next/cache"
 
-export const createFolderComment = async (text : string ,folderId : string ) => { 
-    const session = await auth()
+export const createFolderComment = async (text: string, folderId: string) => {
+  const session = await auth()
 
-    if (!session) { 
-        return null
-    }
+  if (!session) {
+    return null
+  }
 
-    try { 
-        const result = await db.insert(folderComments).values({ 
-            text , 
-            folderId , 
-            userId : session.user.id, 
+  try {
+    const result = await db
+      .insert(folderComments)
+      .values({
+        text,
+        folderId,
+        userId: session.user.id,
+      })
+      .returning()
 
-        }).returning()
-
-    
-        return {...result[0],image : session.user.image, name : session.user.name }
-    } catch { 
-        return null
-    }
+    return { ...result[0], image: session.user.image, name: session.user.name }
+  } catch {
+    return null
+  }
 }
 
-export const deleteFolderComment = async (id : string ) => { 
-    const session = await auth()
+export const deleteFolderComment = async (id: string) => {
+  const session = await auth()
 
-    if (!session) { 
-        return null
-    }
+  if (!session) {
+    return null
+  }
 
-    try { 
-        const result = await db.delete(folderComments).where(and(eq(folderComments.userId,session.user.id), eq(folderComments.id,id))).returning()
+  try {
+    const result = await db
+      .delete(folderComments)
+      .where(
+        and(
+          eq(folderComments.userId, session.user.id),
+          eq(folderComments.id, id),
+        ),
+      )
+      .returning()
 
-    
-        return result[0]
-    } catch { 
-        return null
-    }
+    return result[0]
+  } catch {
+    return null
+  }
 }

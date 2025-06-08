@@ -8,7 +8,6 @@ export function SafariMockUp() {
         className="size-full"
         mode="simple"
         imageSrc="/HeroImg.png"
-
       />
     </div>
   );
