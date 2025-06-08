@@ -34,7 +34,7 @@ const PricingCard = ({pricingType} : {pricingType : "Free" | "Pro"}) => {
                                     
                                     <span className='text-4xl font-serif font-bold'>${price}</span>
                                 </div>
-                                <Button className='w-full' variant={"outline"} disabled={user?.plan === pricingType } onClick={() => router.push(link ? `${link}?prefilled_email=${user?.email}` : "/signin")}>
+                                <Button className='w-full' variant={"outline"} disabled={user?.plan === pricingType } onClick={() => router.push(user && link ? `${link}?prefilled_email=${user?.email}` : "/signin")}>
                                     
                                         {user?.plan === pricingType ? "Your Current Plan" : "Get Started"}
                                     
