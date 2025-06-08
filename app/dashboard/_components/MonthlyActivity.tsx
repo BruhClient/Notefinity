@@ -12,7 +12,7 @@ import {
   ChartConfig,
 } from "@/components/ui/chart"
 import LineGraph from '@/components/LineGraph'
-import { eq, sql, gte, lte } from 'drizzle-orm';
+import { eq, sql, gte, lte, and } from 'drizzle-orm';
 import { startOfMonth, endOfMonth, format, eachDayOfInterval } from 'date-fns';
 import { notes } from '@/db/schema';
 import { db } from '@/db';
@@ -25,6 +25,7 @@ const chartConfig = {
 } satisfies ChartConfig
 const MonthlyActivity = async ({userId} : {userId : string}) => {
 
+    
     const now = new Date();
       const monthStart = startOfMonth(now);
       const monthEnd = endOfMonth(now);
@@ -37,11 +38,11 @@ const MonthlyActivity = async ({userId} : {userId : string}) => {
         })
         .from(notes)
         .where(
-          eq(notes.userId, userId) &&
-          gte(notes.createdAt, monthStart) &&
-          lte(notes.createdAt, monthEnd)
+          and(eq(notes.userId, userId) ,gte(notes.createdAt, monthStart) ,lte(notes.createdAt, monthEnd))
         )
         .groupBy(sql`DATE(${notes.createdAt})`);
+
+      console.log(rows)
     
       const noteCountsMap: Record<string, number> = {};
       for (const row of rows) {

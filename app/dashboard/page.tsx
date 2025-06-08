@@ -23,6 +23,8 @@ async function Dashboard() {
     if (!session) { 
         redirect("/")
     }
+
+    console.log(session.user)
     return ( <div className="px-4">
         <div className="grid grid-cols-1 gap-3 lg:grid-cols-3 w-full ">
 
