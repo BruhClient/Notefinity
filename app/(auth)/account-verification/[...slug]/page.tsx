@@ -56,7 +56,7 @@ export default async function AccountVerificationPage({ params }: PageProps) {
   }
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-background px-4">
+    <main className="min-h-[90vh] flex items-center justify-center bg-background px-4">
       <Card className="w-full max-w-md shadow-xl">
         <CardHeader className="text-center">
           <CardTitle>Account Verification</CardTitle>
