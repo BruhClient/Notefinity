@@ -5,6 +5,7 @@ import { getEmbedding } from "@/lib/embeddings"
 import { db } from "@/db"
 import { folderComments, folderLikes, folders, users } from "@/db/schema"
 import { count, eq, inArray, sql } from "drizzle-orm"
+import { env } from "@/data/env/server"
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url)
@@ -19,7 +20,7 @@ export async function GET(req: NextRequest) {
     const queryVector = await getEmbedding(q)
 
     // 2. Query Pinecone index for topK similar folders
-    const index = pinecone.Index("notefinity-folders")
+    const index = pinecone.Index(env.PINECONE_INDEX)
     const pineconeResponse = await index.query({
       vector: queryVector,
       topK: 10,
@@ -33,12 +34,13 @@ export async function GET(req: NextRequest) {
     }
 
     const ids = matches.map((match) => match.id)
-    const scoreMap = Object.fromEntries(matches.map((match) => [match.id, match.score]))
-
+    const scoreMap = Object.fromEntries(
+      matches.map((match) => [match.id, match.score]),
+    )
 
     // 3. Create ordering CASE to maintain Pinecone result order
     const orderingCase = sql.raw(
-      `CASE ${ids.map((id, index) => `WHEN folders.id = '${id}' THEN ${index}`).join(" ")} ELSE ${ids.length} END`
+      `CASE ${ids.map((id, index) => `WHEN folders.id = '${id}' THEN ${index}`).join(" ")} ELSE ${ids.length} END`,
     )
 
     // 4. Query database for folder metadata

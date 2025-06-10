@@ -1,6 +1,7 @@
 "use server"
 
 import { colorNames } from "@/data/constants"
+import { env } from "@/data/env/server"
 import { pricingTypes } from "@/data/pricingTypes"
 import { db } from "@/db"
 import { notes } from "@/db/schema"
@@ -55,7 +56,7 @@ export const createNote = async (
       })
       .returning()
 
-    const index = pinecone.index("notefinity")
+    const index = pinecone.index(env.PINECONE_INDEX).namespace("notes")
 
     const embedding = await getEmbeddingForNote(title, text)
 
@@ -86,7 +87,7 @@ export const deleteNote = async (noteId: string, userId: string) => {
       .delete(notes)
       .where(and(eq(notes.id, noteId), eq(notes.userId, userId)))
       .returning()
-    const index = pinecone.index("notefinity")
+    const index = pinecone.index(env.PINECONE_INDEX).namespace("notes")
     await index.deleteOne(note[0].id)
 
     return {
@@ -108,7 +109,7 @@ export const updateNoteById = async (id: string, options: note) => {
       .where(eq(notes.id, id))
       .returning()
 
-    const index = pinecone.index("notefinity")
+    const index = pinecone.index(env.PINECONE_INDEX).namespace("notes")
 
     const embedding = await getEmbeddingForNote(
       result[0].title,

@@ -1,6 +1,7 @@
 "use server"
 
 import { colorNames } from "@/data/constants"
+import { env } from "@/data/env/server"
 import { pricingTypes } from "@/data/pricingTypes"
 import { db } from "@/db"
 import { folders } from "@/db/schema"
@@ -8,7 +9,7 @@ import { auth } from "@/lib/auth"
 import { getEmbedding } from "@/lib/embeddings"
 import pinecone from "@/lib/pinecone"
 import { eq, InferModel, sql } from "drizzle-orm"
-import { revalidatePath, revalidateTag } from "next/cache"
+import { revalidatePath } from "next/cache"
 
 export const createFolder = async (name: string) => {
   const session = await auth()
@@ -45,7 +46,7 @@ export const createFolder = async (name: string) => {
       })
       .returning()
 
-    const index = pinecone.index("notefinity-folders")
+    const index = pinecone.index(env.PINECONE_INDEX).namespace("folders")
     const embedding = await getEmbedding(name)
     await index.upsert([
       {
@@ -84,7 +85,7 @@ export const updateFolderById = async (id: string, options: folder) => {
       .where(eq(folders.id, id))
       .returning()
 
-    const index = pinecone.index("notefinity-folders")
+    const index = pinecone.index(env.PINECONE_INDEX).namespace("folders")
     const embedding = await getEmbedding(result[0].name)
     await index.update({
       id: result[0].id,
@@ -127,9 +128,8 @@ export const deleteFolder = async (id: string) => {
   try {
     const data = await db.delete(folders).where(eq(folders.id, id)).returning()
 
-    const index = pinecone.index("notefinity-folders")
+    const index = pinecone.index(env.PINECONE_INDEX).namespace("folders")
 
-    console.log(id)
     await index.deleteOne(id)
 
     revalidatePath(`/folders`)
