@@ -4,7 +4,7 @@ import { colorNames } from "@/data/constants"
 import { env } from "@/data/env/server"
 import { pricingTypes } from "@/data/pricingTypes"
 import { db } from "@/db"
-import { folders } from "@/db/schema"
+import { folders, notes } from "@/db/schema"
 import { auth } from "@/lib/auth"
 import { getEmbedding } from "@/lib/embeddings"
 import pinecone from "@/lib/pinecone"
@@ -126,6 +126,20 @@ export const getFolders = async (
 
 export const deleteFolder = async (id: string) => {
   try {
+    const noteIds = await db
+      .select({ id: notes.id })
+      .from(notes)
+      .where(eq(notes.folderId, id))
+
+    const noteIdList = noteIds.map((note) => note.id)
+
+    console.log(noteIdList)
+    const noteIndex = pinecone.index(env.PINECONE_INDEX).namespace("notes")
+
+    if (noteIdList.length > 0) {
+      await noteIndex.deleteMany(noteIdList)
+    }
+
     const data = await db.delete(folders).where(eq(folders.id, id)).returning()
 
     const index = pinecone.index(env.PINECONE_INDEX).namespace("folders")
@@ -139,6 +153,7 @@ export const deleteFolder = async (id: string) => {
       userId: data[0].userId,
     }
   } catch (error) {
+    console.log(error)
     return null
   }
 }
