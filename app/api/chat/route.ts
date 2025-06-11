@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       messagesTruncated.map((message) => message.content).join("\n"),
     )
 
-    const index = pinecone.index(env.PINECONE_INDEX).namespace("folders")
+    const index = pinecone.index(env.PINECONE_INDEX).namespace("notes")
     const vectorQueryResponse = await index.query({
       vector: embedding,
       topK: 4,
@@ -30,6 +30,7 @@ export async function POST(req: Request) {
     })
 
     const ids = vectorQueryResponse.matches.map((match) => match.id)
+
     const data = await db.select().from(notes).where(inArray(notes.id, ids))
 
     const result = await db

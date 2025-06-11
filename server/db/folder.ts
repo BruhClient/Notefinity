@@ -67,7 +67,8 @@ export const createFolder = async (name: string) => {
       createdAt: folder[0].createdAt,
       error: null,
     }
-  } catch {
+  } catch (error) {
+    console.log(error)
     return {
       error: "Something went wrong",
     }
